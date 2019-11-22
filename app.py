@@ -277,7 +277,10 @@ def search_results(n_clicks,source,keyword):
     except KeyError:
         children=['No article about {} found on {}'.format(keyword,all_options[source])]
     if len(children)==0:
-        children=['No article about {} found on {}'.format(keyword,all_options[source])]
+        try:
+            children=['No article about {} found on {}'.format(keyword,all_options[source])]
+        except KeyError:
+            children=['No article about {} found.'.format(keyword)]
     
         
    
