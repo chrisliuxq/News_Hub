@@ -207,6 +207,7 @@ app.layout = html.Div([
                 dcc.Input(id='keyword-input',
                           placeholder='Enter a keyword...',
                           type='text',
+                          value = None,
                           style={'margin-left':'350px','width':'400px'}),
       
                 dcc.Dropdown(id='website-dropdown',
@@ -242,6 +243,8 @@ def search_results(n_clicks,source,keyword):
         url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey={}'.format(key)
     elif keyword is not None and source==None:
         url = 'https://newsapi.org/v2/everything?qInTitle={}&apiKey={}'.format(keyword,key)
+    elif source is not None and keyword==None:
+        url = 'https://newsapi.org/v2/top-headlines?sources={}&apiKey={}'.format(source,key)
     else:
         url = 'https://newsapi.org/v2/everything?qInTitle={}&sources={}&apiKey={}'.format(keyword,source,key)
     
